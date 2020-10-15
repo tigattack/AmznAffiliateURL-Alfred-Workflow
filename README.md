@@ -1,4 +1,4 @@
-# Amazon Affiliate URL Generator
+# Amazon Affiliate Short URL Generator
 
 An Alfred workflow which takes an [Amazon ASIN](https://en.wikipedia.org/wiki/Amazon_Standard_Identification_Number) and generates a shortened URL (`amzn.to`) including your affiliate tag.
 
