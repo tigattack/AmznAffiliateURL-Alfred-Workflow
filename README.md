@@ -9,7 +9,7 @@ An Alfred workflow which takes an [Amazon ASIN](https://en.wikipedia.org/wiki/Am
 
 # How to
 ## Install
-1. Download the latest `.workflow` file from the [releases section](https://github.com/tigattack/AmznAffiliateURL-Alfred-Workflow/releases).
+1. Download the latest `.alfredworkflow` file from the [releases section](https://github.com/tigattack/AmznAffiliateURL-Alfred-Workflow/releases).
 2. Double click the downloaded file to add the workflow to Alfred.
 
 ## Configure
