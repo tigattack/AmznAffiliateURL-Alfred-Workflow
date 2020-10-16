@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>tech.tiga.amzn</string>
+	<key>category</key>
+	<string>Tools</string>
+	<key>connections</key>
+	<dict>
+		<key>2C99F6F1-EF16-4CF1-9762-5D05A1FFAA4D</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>16039760-F173-4AB8-9C73-DA7401D5DE23</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>tigattack</string>
+	<key>description</key>
+	<string>Takes Amazon ASIN and generates a shortened URL with affiliate tag.</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>Amazon Affiliate Short URL Generator</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string># Set vars.
+asin="{query}"
+url="https://www.${amzn_domain}/dp/${asin}/?tag=${associate_id}"
+
+# Generate short URL using bit.ly API.
+response=$(curl -H 'Authorization: Bearer '"$bitly_token"'' -H 'Content-Type: application/json' -X POST -d '{"long_url": "'"$url"'","domain": "bit.ly","group_guid": "Bkafe1wZ55e"}' https://api-ssl.bitly.com/v4/shorten)
+
+# Parse short URL and add to clipboard.
+echo $response | awk -F'"' '{ print $12 }' | pbcopy</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>16039760-F173-4AB8-9C73-DA7401D5DE23</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>amzn</string>
+				<key>subtext</key>
+				<string>Generate amzn.to product URLs with embedded affiliate tag.</string>
+				<key>text</key>
+				<string>Generate Amazon Affiliate Short URL</string>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>2C99F6F1-EF16-4CF1-9762-5D05A1FFAA4D</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string>Add your bit.ly API token, Amazon Associate tracking ID, and regional Amazon domain to the relevant variables on the right --&gt;
+
+You can get a bit.ly API token here - https://bitly.is/accesstoken
+
+You can find your Amazon Associate tracking ID here - https://affiliate-program.amazon.co.uk/home/account/tag/manage
+
+You can find a list of regional Amazon domains here - https://en.wikipedia.org/wiki/Amazon_(company)#Website
+
+NOTE: This Alfred Workflow is not affiliated in any way with Amazon or bit.ly.</string>
+	<key>uidata</key>
+	<dict>
+		<key>16039760-F173-4AB8-9C73-DA7401D5DE23</key>
+		<dict>
+			<key>xpos</key>
+			<integer>290</integer>
+			<key>ypos</key>
+			<integer>50</integer>
+		</dict>
+		<key>2C99F6F1-EF16-4CF1-9762-5D05A1FFAA4D</key>
+		<dict>
+			<key>xpos</key>
+			<integer>50</integer>
+			<key>ypos</key>
+			<integer>50</integer>
+		</dict>
+	</dict>
+	<key>variables</key>
+	<dict>
+		<key>amzn_domain</key>
+		<string></string>
+		<key>associate_id</key>
+		<string></string>
+		<key>bitly_token</key>
+		<string></string>
+	</dict>
+	<key>variablesdontexport</key>
+	<array>
+		<string>amzn_domain</string>
+		<string>bitly_token</string>
+		<string>associate_id</string>
+	</array>
+	<key>version</key>
+	<string>1.0</string>
+	<key>webaddress</key>
+	<string>https://blog.tiga.tech</string>
+</dict>
+</plist>

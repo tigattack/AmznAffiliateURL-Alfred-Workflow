@@ -21,6 +21,10 @@ An Alfred workflow which takes an [Amazon ASIN](https://en.wikipedia.org/wiki/Am
 2. Type `amzn `, append an Amazon product ASIN, and hit enter.
 3. Find the shortened URL including affiliate tag in your clipboard.
 
+## Build
+1. Run `make`
+2. Import .alfredworkflow file into Alfred.
+
 # Notices
 
 This Alfred Workflow is not affiliated in any way with Amazon or bit.ly.
