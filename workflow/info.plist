@@ -12,7 +12,20 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>16039760-F173-4AB8-9C73-DA7401D5DE23</string>
+				<string>32C26497-090D-4DB0-B661-229E3EDF88FB</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>32C26497-090D-4DB0-B661-229E3EDF88FB</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>382DF0CC-7AA2-47FF-BB5B-42CE2689E85F</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -35,33 +48,21 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>concurrently</key>
+				<key>autopaste</key>
 				<false/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string># Set vars.
-asin="{query}"
-url="https://www.${amzn_domain}/dp/${asin}/?tag=${associate_id}"
-
-# Generate short URL using bit.ly API.
-response=$(curl -H 'Authorization: Bearer '"$bitly_token"'' -H 'Content-Type: application/json' -X POST -d '{"long_url": "'"$url"'","domain": "bit.ly","group_guid": "Bkafe1wZ55e"}' https://api-ssl.bitly.com/v4/shorten)
-
-# Parse short URL and add to clipboard.
-echo $response | awk -F'"' '{ print $12 }' | pbcopy</string>
-				<key>scriptargtype</key>
-				<integer>0</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>0</integer>
+				<key>clipboardtext</key>
+				<string>{query}</string>
+				<key>ignoredynamicplaceholders</key>
+				<false/>
+				<key>transient</key>
+				<false/>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.action.script</string>
+			<string>alfred.workflow.output.clipboard</string>
 			<key>uid</key>
-			<string>16039760-F173-4AB8-9C73-DA7401D5DE23</string>
+			<string>382DF0CC-7AA2-47FF-BB5B-42CE2689E85F</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>3</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -84,6 +85,29 @@ echo $response | awk -F'"' '{ print $12 }' | pbcopy</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>68</integer>
+				<key>script</key>
+				<string>./short-affiliate.py $amzn_domain $associate_id $bitly_token {query}</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string>short-affiliate.py</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>32C26497-090D-4DB0-B661-229E3EDF88FB</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
 	</array>
 	<key>readme</key>
 	<string>Add your bit.ly API token, Amazon Associate tracking ID, and regional Amazon domain to the relevant variables on the right --&gt;
@@ -97,13 +121,6 @@ You can find a list of regional Amazon domains here - https://en.wikipedia.org/w
 NOTE: This Alfred Workflow is not affiliated in any way with Amazon or bit.ly.</string>
 	<key>uidata</key>
 	<dict>
-		<key>16039760-F173-4AB8-9C73-DA7401D5DE23</key>
-		<dict>
-			<key>xpos</key>
-			<integer>290</integer>
-			<key>ypos</key>
-			<integer>50</integer>
-		</dict>
 		<key>2C99F6F1-EF16-4CF1-9762-5D05A1FFAA4D</key>
 		<dict>
 			<key>xpos</key>
@@ -111,11 +128,25 @@ NOTE: This Alfred Workflow is not affiliated in any way with Amazon or bit.ly.</
 			<key>ypos</key>
 			<integer>50</integer>
 		</dict>
+		<key>32C26497-090D-4DB0-B661-229E3EDF88FB</key>
+		<dict>
+			<key>xpos</key>
+			<integer>240</integer>
+			<key>ypos</key>
+			<integer>50</integer>
+		</dict>
+		<key>382DF0CC-7AA2-47FF-BB5B-42CE2689E85F</key>
+		<dict>
+			<key>xpos</key>
+			<integer>425</integer>
+			<key>ypos</key>
+			<integer>50</integer>
+		</dict>
 	</dict>
 	<key>variables</key>
 	<dict>
 		<key>amzn_domain</key>
-		<string></string>
+		<string>amazon.co.uk</string>
 		<key>associate_id</key>
 		<string></string>
 		<key>bitly_token</key>
@@ -123,12 +154,11 @@ NOTE: This Alfred Workflow is not affiliated in any way with Amazon or bit.ly.</
 	</dict>
 	<key>variablesdontexport</key>
 	<array>
-		<string>amzn_domain</string>
 		<string>bitly_token</string>
 		<string>associate_id</string>
 	</array>
 	<key>version</key>
-	<string>1.0</string>
+	<string>2.0</string>
 	<key>webaddress</key>
 	<string>https://blog.tiga.tech</string>
 </dict>
